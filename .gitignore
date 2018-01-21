@@ -1,5 +1,5 @@
-Vidly2/packages/
-VanHackForumApp/VanHackForumApp/obj/
-VanHackForumApp/bin/
-VanHackForumApp/App_Data/
-VanHackForumApp/.vs/
+/packages
+/VanHackForumWebApp/obj
+/VanHackForumWebApp/bin
+/VanHackForumWebApp/App_Data
+/.vs

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<VanHackForumWebApp.DTOs.PostDto> 
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/views/Shared/_Layout.cshtml";
+}
+
+<a href="Posts/NewPost" class="btn btn-primary" role="button">New Post</a>
+
+
+<table id="poststable" width="100%" class="display">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Posts/Index.js");
+}

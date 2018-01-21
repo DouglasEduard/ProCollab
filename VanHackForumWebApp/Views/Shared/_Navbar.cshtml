@@ -1,0 +1,22 @@
+﻿<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark bg-primary">
+    <a class="navbar-brand" href="#">VanHack awesome forum</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    @if (Request.IsAuthenticated)
+    {
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <span class="nav-link">@Html.ActionLink("Posts", "Index", "Posts")</span>
+                </li>
+            </ul>
+        </div>
+    }
+
+    @Html.Partial("_LoginPartial")
+</nav>
+
+
