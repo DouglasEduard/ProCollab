@@ -206,11 +206,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\PostCommentsController.cs" />
     <Compile Include="Controllers\Api\PostsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="DTOs\CategoryDto.cs" />
+    <Compile Include="DTOs\PostCommentDto.cs" />
     <Compile Include="DTOs\PostDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -231,12 +233,17 @@
     <Compile Include="Migrations\201801202013056_PostUser.Designer.cs">
       <DependentUpon>201801202013056_PostUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801210212373_AddPostCommentTable.cs" />
+    <Compile Include="Migrations\201801210212373_AddPostCommentTable.Designer.cs">
+      <DependentUpon>201801210212373_AddPostCommentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\PostDetail.cs" />
@@ -500,6 +507,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Posts\Details.js" />
     <Content Include="Scripts\Posts\Index.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -542,6 +550,7 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\PostForm.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -573,6 +582,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801202013056_PostUser.resx">
       <DependentUpon>201801202013056_PostUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801210212373_AddPostCommentTable.resx">
+      <DependentUpon>201801210212373_AddPostCommentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -44,6 +44,22 @@ namespace VanHackForumWebApp.Controllers
             return View("PostForm", ViewModel);
         }
 
+        public ActionResult Details(int Id)
+        {
+            var post = _context
+                                .Posts.Include(c => c.Category)
+                                .SingleOrDefault(c => c.Id == Id);
+
+            if (post == null)
+                return HttpNotFound();
+
+            PostDetail ResultView = new PostDetail();
+
+            AutoMapper.Mapper.Map(post, ResultView);
+
+            return View(ResultView);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(PostDto postDTO)

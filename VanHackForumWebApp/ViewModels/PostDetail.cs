@@ -21,6 +21,8 @@ namespace VanHackForumWebApp.ViewModels
         [Display(Name = "Category")]
         public byte Category_ID { get; set; }
 
+        public string UserNickName { get; set; }
+
         public IEnumerable<Category> Categories { get; set; }
     }
 }

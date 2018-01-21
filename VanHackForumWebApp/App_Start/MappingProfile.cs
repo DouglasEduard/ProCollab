@@ -13,12 +13,21 @@ namespace VanHackForumWebApp.App_Start
     {
         public MappingProfile()
         {
+            //Post
             Mapper.CreateMap<Post, PostDto>();
             Mapper.CreateMap<PostDto, Post>();
+            Mapper.CreateMap<Post, PostDetail>();
+            Mapper.CreateMap<PostDetail, Post>();
             Mapper.CreateMap<PostDetail, PostDto>();
             Mapper.CreateMap<PostDto, PostDetail>();
+
+            //Category
             Mapper.CreateMap<Category, CategoryDto>();
             Mapper.CreateMap<CategoryDto, Category>();
+
+            //PostComment
+            Mapper.CreateMap<PostComment, PostCommentDto>();
+            Mapper.CreateMap<PostCommentDto, PostComment>();
         }
     }
 }

@@ -22,6 +22,5 @@ namespace VanHackForumWebApp.Models
 
         [StringLength(30)]
         public string UserNickName { get; set; }
-
     }
 }

@@ -26,6 +26,7 @@ namespace VanHackForumWebApp.Models
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<PostComment> PostComments { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

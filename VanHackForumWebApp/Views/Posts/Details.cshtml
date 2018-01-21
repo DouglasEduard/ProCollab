@@ -1,0 +1,26 @@
+﻿@model VanHackForumWebApp.ViewModels.PostDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>@Model.Title</h1>
+
+<text>
+    <p>Created by: @Model.UserNickName</p>
+    <p>Details: @Model.Details</p>
+</text>
+
+<table id="postcommenttable" width="100%" class="display">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Posts/Details.js");
+}
