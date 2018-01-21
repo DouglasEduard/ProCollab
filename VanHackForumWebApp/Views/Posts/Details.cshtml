@@ -11,6 +11,19 @@
     <p>Details: @Model.Details</p>
 </text>
 
+<form id="newComment">
+    <div class="form-group">        
+        @Html.Hidden("Id", Model.Id, new { @id = "postID" })
+        <label>Add comment</label>
+        <div class="tt-container">
+            <input id="txtAddComment" name="txtAddComment" data-rule-validComment="true" required type="text" value="" class="form-control">
+        </div>        
+    </div>
+    <button onclick="postNewComment(); return false;" class="btn btn-primary">Publish comment</button>    
+</form>
+
+<br>
+<h2>All comments</h2>
 <table id="postcommenttable" width="100%" class="display">
     <thead>
         <tr>
@@ -22,5 +35,6 @@
 </table>
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval");
     @Scripts.Render("~/Scripts/Posts/Details.js");
 }

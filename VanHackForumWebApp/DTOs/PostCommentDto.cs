@@ -19,6 +19,6 @@ namespace VanHackForumWebApp.DTOs
         public string Comment { get; set; }
 
         [Required]
-        public byte Post_ID { get; set; }
+        public int Post_ID { get; set; }
     }
 }
