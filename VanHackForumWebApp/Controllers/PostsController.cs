@@ -139,6 +139,10 @@ namespace VanHackForumWebApp.Controllers
                     var PostInDb = _context.Posts.Single(c => c.Id == postDTO.Id);
 
                     AutoMapper.Mapper.Map(postDTO, PostInDb);
+
+                    PostInDb.User = _context.Users.Select(u => u).Where(w => w.Id == sUserID).Single();
+                    PostInDb.UserNickName = PostInDb.User.NickName;
+                    PostInDb.Category = _context.Categories.Select(c => c).Where(w => w.ID == postDTO.Category_ID).Single();
                 }
 
                 _context.SaveChanges();

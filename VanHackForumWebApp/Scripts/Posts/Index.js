@@ -11,6 +11,9 @@
                 "bLengthChange": false,
                 columns: [
                     {
+                        data: "userNickName"
+                    },                    
+                    {
                         data: "title"
                     },
                     {

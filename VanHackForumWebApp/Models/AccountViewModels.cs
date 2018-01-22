@@ -66,6 +66,7 @@ namespace VanHackForumWebApp.Models
     {
         [Required]
         [StringLength(30)]
+        [Display(Name = "Nick Name")]
         public string NickName { get; set; }
 
         [Required]

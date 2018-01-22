@@ -20,6 +20,8 @@ namespace VanHackForumWebApp.DTOs
         [Required(ErrorMessage = "Please enter Category.")]
         public byte Category_ID { get; set; }
 
+        public string UserNickName { get; set; }
+
         public CategoryDto Category { get; set; }
     }
 }
