@@ -23,6 +23,8 @@ namespace VanHackForumWebApp.ViewModels
 
         public string UserNickName { get; set; }
 
+        public bool EditionAllowed { get; set; }
+
         public IEnumerable<Category> Categories { get; set; }
     }
 }

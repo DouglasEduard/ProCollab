@@ -21,7 +21,7 @@ namespace VanHackForumWebApp.Controllers.Api
         }
 
         //GET /api/postcomments
-        public IHttpActionResult GetPostComments(string query = null)
+        public IHttpActionResult GetPostComments(int postID, string query = null)
         {
             var PostCommentsQuery = _context.PostComments
                                             .Include(c => c.Post);
@@ -29,9 +29,30 @@ namespace VanHackForumWebApp.Controllers.Api
             if (!String.IsNullOrWhiteSpace(query))
                 PostCommentsQuery = PostCommentsQuery.Where(c => c.Comment.Contains(query));
 
+            string sUserID = User.Identity.GetUserId();
+
             var PostCommentsDTO =
-                    PostCommentsQuery.ToList()
-                                     .Select(AutoMapper.Mapper.Map<PostComment, PostCommentDto>);
+                    (from r in PostCommentsQuery
+
+                        join p in _context.Posts
+                            on  r.Post.Id equals p.Id
+
+                        join u in _context.Users
+                            on r.User.Id equals u.Id
+
+                     where p.Id == postID
+
+                     select new PostCommentDto()
+                        {
+                            Id = r.Id,
+                            Date = r.Date,
+                            UserNickName = r.UserNickName,
+                            Comment = r.Comment,
+                            Post_ID = r.Post.Id,
+                            CanBeDeleted = r.User.Id == sUserID ? 1 : 0                            
+                        }
+                     ).OrderByDescending(o => o.Id)
+                     .ToList();            
 
             return Ok(PostCommentsDTO);
         }
@@ -64,6 +85,24 @@ namespace VanHackForumWebApp.Controllers.Api
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        //DELETE /api/postcomments/id
+        [HttpDelete]
+        public void DeleteComment(int id)
+        {
+            var CommentInDB = _context.PostComments
+                                   .Include(u => u.User)
+                                   .SingleOrDefault(c => c.Id == id);
+
+            if (CommentInDB.User.Id != User.Identity.GetUserId())
+                throw new HttpResponseException(HttpStatusCode.MethodNotAllowed);
+
+            if (CommentInDB == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            _context.PostComments.Remove(CommentInDB);
+            _context.SaveChanges();
         }
     }
 }

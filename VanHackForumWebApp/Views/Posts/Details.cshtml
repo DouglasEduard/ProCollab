@@ -4,10 +4,18 @@
     ViewBag.Title = "Details";
 }
 
-<h1>@Model.Title</h1>
+@if (Model.EditionAllowed)
+{
+   <h1>@Model.Title</h1>
+   <a href='/posts/EditPost/@Model.Id'>Click here to edit this post</a>  
+}
+else
+{
+   <h1>@Model.Title</h1>
+}
 
 <text>
-    <p>Created by: @Model.UserNickName</p>
+    <p>Created by: @Model.UserNickName</p> 
     <p>Details: @Model.Details</p>
 </text>
 
@@ -16,7 +24,8 @@
         @Html.Hidden("Id", Model.Id, new { @id = "postID" })
         <label>Add comment</label>
         <div class="tt-container">
-            <input id="txtAddComment" name="txtAddComment" data-rule-validComment="true" required type="text" value="" class="form-control">
+            <textarea id="txtAddComment" name="txtAddComment" data-rule-validComment="true" required type="text" value="" class="form-control">
+            </textarea>
         </div>        
     </div>
     <button onclick="postNewComment(); return false;" class="btn btn-primary">Publish comment</button>    
@@ -29,6 +38,7 @@
         <tr>
             <th>User</th>
             <th>Comment</th>
+            <th></th>
         </tr>
     </thead>
     <tbody></tbody>

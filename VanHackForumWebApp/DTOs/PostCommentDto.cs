@@ -20,5 +20,7 @@ namespace VanHackForumWebApp.DTOs
 
         [Required]
         public int Post_ID { get; set; }
+
+        public int CanBeDeleted { get; set; }
     }
 }

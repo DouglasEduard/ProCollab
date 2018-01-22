@@ -15,7 +15,8 @@ namespace VanHackForumWebApp
                     "~/Scripts/datatables/jquery.dataTables.min.js",
                     "~/Scripts/datatables/datatables.bootstrap.js",
                     "~/Scripts/Typeahead.bundle.js",
-                    "~/Scripts/toastr.js"
+                    "~/Scripts/toastr.js",
+                    "~/Scripts/jquery-confirm.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -30,7 +31,8 @@ namespace VanHackForumWebApp
                       "~/Content/DataTables/css/jquery.dataTables.min.css",
                       "~/Content/Typeahead.css",
                       "~/Content/toastr.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Scripts/jquery-confirm.css"));
         }
     }
 }

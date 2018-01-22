@@ -44,20 +44,66 @@ namespace VanHackForumWebApp.Controllers
             return View("PostForm", ViewModel);
         }
 
-        public ActionResult Details(int Id)
+        private PostDetail GetPostDetails(int Id, bool bLoadCategories, out bool bNotFound)
         {
+            bNotFound = false;
+
             var post = _context
-                                .Posts.Include(c => c.Category)
+                                .Posts.Include(c => c.Category).Include(u => u.User)
                                 .SingleOrDefault(c => c.Id == Id);
 
             if (post == null)
-                return HttpNotFound();
+            {
+                bNotFound = true;
+                return new PostDetail();
+            }
 
             PostDetail ResultView = new PostDetail();
 
+            if (bLoadCategories)
+            {
+                var Categories = _context.Categories.ToList();
+
+                ResultView = new PostDetail
+                {
+                    Categories = Categories
+                };
+            }
+
             AutoMapper.Mapper.Map(post, ResultView);
 
+            ResultView.EditionAllowed = post.User.Id == User.Identity.GetUserId();
+
+            return ResultView;
+        }
+
+        public ActionResult EditPost(int Id)
+        {
+            bool bNotFound = false;
+
+            PostDetail postDetail = GetPostDetails(Id, true, out bNotFound);
+
+            if (!postDetail.EditionAllowed)
+                return RedirectToAction("NotAllowed", "Posts");
+            else
+                return View("PostForm", postDetail);
+        }
+
+        public ActionResult Details(int Id)
+        {
+            bool bNotFound = false;
+
+            PostDetail ResultView = GetPostDetails(Id, false, out bNotFound);
+
+            if (bNotFound)
+                return HttpNotFound();
+
             return View(ResultView);
+        }
+
+        public ActionResult NotAllowed()
+        {
+            return View();
         }
 
         [HttpPost]
